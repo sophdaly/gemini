@@ -32,8 +32,6 @@ def main(_):
         embeddings = facenet.enrich(images=images, batch_size=FLAGS.batch_size)
         print("{} images enriched [timer: {:.2f}s]".format(len(embeddings), time.time() - t0))
 
-    print(len(embeddings[0]))
-
     # Output images, embeddings and labels to file
     df = pd.DataFrame.from_dict(
         {
