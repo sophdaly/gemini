@@ -5,7 +5,7 @@ MLP
 import tensorflow as tf
 
 
-def mlp(features_dict, num_features, layer_config, weight_decay=0.0, training_mode=True, reuse=False):
+def mlp(input_features, num_features, layer_config, weight_decay=0.0, training_mode=True, reuse=False):
     """
     Configurable Multilayer Perceptron network with L2 normalisation on final layer
 
@@ -17,7 +17,7 @@ def mlp(features_dict, num_features, layer_config, weight_decay=0.0, training_mo
     layers = layer_config['layer_sizes']
     dropout_rates = layer_config['dropout_rates']
 
-    out = tf.reshape(features_dict['feature_vector'], [-1, num_features])
+    out = tf.reshape(input_features, [-1, num_features])
 
     for idx, (layer_size, dropout_rate) in enumerate(zip(layers, dropout_rates)):
 
