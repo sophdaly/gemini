@@ -1,7 +1,7 @@
 gemini 👯‍️
 ==============================
 
-The purpose of this repo is to experiment with Siamese Networks, One Shot Learning and Facial Verification, using FaceNet as inspiration and guidance.
+The purpose of this repo is to experiment with Siamese Networks and Facial Verification, using FaceNet as #inspo.
 
 Specifically, `gemini` fine tunes a pre-trained [FaceNet](https://github.com/davidsandberg/facenet) model and evaluates performance when trained on regular and fine-grained LFW data. 
 
@@ -12,13 +12,10 @@ Specifically, `gemini` fine tunes a pre-trained [FaceNet](https://github.com/dav
 ## Overview
 
 ### FaceNet
-FaceNet is a facial recognition model.
-
-* **TODO:** Add detail
-
+FaceNet ([FaceNet](https://arxiv.org/pdf/1503.03832.pdf), 2015) is a CNN model from Google researchers that directly learns a mapping from face images to a compact Euclidean space where distances directly correspond to a measure of face similarity. 
 
 ### LFW
-[Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) is a standard dataset used for evaluating and benchmarking facial recognition algorithms. 
+[Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) (LFW) is the de-facto academic benchmarking dataset for face verification which contains more than 13,000 labelled facial images of 1680 people collected from the web. 
 
 #### Fine-Grained LFW
 
@@ -32,7 +29,7 @@ Siamese networks are a special type of neural network architecture. Instead of a
 
 ### Transfer Learning
 
-I used a pretrained [FaceNet](https://github.com/davidsandberg/facenet) model from David Sandberg, to enrich images with 512 dimensional embedding.
+I used a pretrained [FaceNet](https://github.com/davidsandberg/facenet) model from David Sandberg, to enrich images with 512 dimensional embedding. 
 
 Ideally I would like to restore pretrained model via Estimator API, and fine tune by appending additional layers. But, I couldn't find an easy way to do this, e.g. using Tensorflow Hub. So decided to keep FaceNet as a feature generation step, and train my own custom model separately to get started quickly.
 
