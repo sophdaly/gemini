@@ -10,6 +10,9 @@ from math import ceil
 import numpy as np
 
 
+FACENET_INPUT_DIM = 160
+
+
 class FaceNet(object):
 
     def __init__(self, sess, model_path, verbose=False):
@@ -27,7 +30,7 @@ class FaceNet(object):
         self.embeddings = self.graph.get_tensor_by_name("embeddings:0")
 
         # Standard input image size for FaceNet
-        self.image_size = 160
+        self.image_size = FACENET_INPUT_DIM
 
     def enrich(self, images, batch_size):
         """
