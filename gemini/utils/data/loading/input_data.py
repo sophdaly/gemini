@@ -78,14 +78,15 @@ def _format_input_features(features_dict):
     Just make sure all features are cast to correct type
     Return features dict and target if exists
     """
-    # Features and product info
     features = {
         'image': tf.cast(features_dict['image'], tf.string),
-        'label': tf.cast(features_dict['label'], tf.string),
+        'name': tf.cast(features_dict['label'], tf.string),
         'embedding': tf.cast(features_dict['embedding'], tf.float32),
     }
 
-    return features
+    target = tf.cast(features_dict['label'], tf.string)
+
+    return features, target
 
 
 def _generator_meta(embedding_dim):
