@@ -1,5 +1,5 @@
 """
-Helper functions for loading features into a TFRecordDataset
+Helper functions for loading data into a TFRecordDataset
 """
 
 from ast import literal_eval
@@ -76,29 +76,34 @@ def _load_dataset(data_path, embedding_dim):
 def _format_input_features(features_dict):
     """
     Just make sure all features are cast to correct type
-    Return features dict and target if exists
+    Return features dict and label
     """
     features = {
-        'image': tf.cast(features_dict['image'], tf.string),
-        'name': tf.cast(features_dict['label'], tf.string),
-        'embedding': tf.cast(features_dict['embedding'], tf.float32),
+        'anchor': tf.cast(features_dict['anchor'], tf.float32),
+        'positive': tf.cast(features_dict['positive'], tf.float32),
+        'anchor_image': tf.cast(features_dict['anchor_image'], tf.string),
+        'positive_image': tf.cast(features_dict['positive_image'], tf.string),
     }
 
-    target = tf.cast(features_dict['label'], tf.string)
+    label = tf.cast(features_dict['label'], tf.string)
 
-    return features, target
+    return features, label
 
 
 def _generator_meta(embedding_dim):
     dict_types = {
-        'image': tf.string,
-        'label': tf.string,
-        'embedding': tf.float32
+        'anchor': tf.float32,
+        'positive': tf.float32,
+        'anchor_image': tf.string,
+        'positive_image': tf.string,
+        'label': tf.string
     }
     dict_shapes = {
-        'image': (),
-        'label': (),
-        'embedding': (embedding_dim),
+        'anchor': (embedding_dim),
+        'positive': (embedding_dim),
+        'anchor_image': (),
+        'positive_image': (),
+        'label': ()
     }
 
     return dict_types, dict_shapes
