@@ -22,10 +22,23 @@ FaceNet ([FaceNet](https://arxiv.org/pdf/1503.03832.pdf), 2015) is a CNN model f
 [FGLFW](http://www.whdeng.cn/FGLFW/FGLFW.html) deliberately selects 3000 similarly-looking face pairs to replace the random negative pairs in LFW that are quite easy to distinguish. Its purpose is to close the large gap between the reported performance on benchmarks and performance on real world tasks.
 
 
-### Siamese Networks
+## Siamese Networks
 
 Siamese networks are a special type of neural network architecture. Instead of a model learning to classify its inputs, the neural networks learns to differentiate between them. 
 
+### Triplet Loss
+In the embedding space, faces from the same person should be close together and form well separated clusters. A *triplet loss* is employed to achieve this, which is parameterised by an anchor image with corresponding positive and negatively matched samples.
+
+<p align="center">
+<i>
+L(a, p, n) = max(d(a, p) - d(a, n) + margin, 0)
+</i>
+</p>
+
+The *margin* parameter defines how far away the dissimilarities should be. Minimizing the triplet loss, pushes the distances between positively matched samples, *d(a,p)*, to *0*, and the distances between negatively matched samples, *d(a,n)*, to be at least *margin* length away. As soon as the negative sample becomes too *easy*, the distance between it an the anchor exceeds the margin, the loss becomes zero.
+
+
+### Triplet Mining
 
 ### Transfer Learning
 
