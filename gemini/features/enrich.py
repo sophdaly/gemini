@@ -84,7 +84,7 @@ if __name__ == '__main__':
                         help='Path to pretrained FaceNet model directory')
     parser.add_argument('--input_data_path', type=str, default='data/raw/lfw-deepfunneled',
                         help='Path to input image data directory')
-    parser.add_argument('--output_features_file', type=str, default='data/processed/feature_data.csv',
+    parser.add_argument('--output_features_file', type=str, default='data/interim/feature_data.csv',
                         help='Path to output feature data directory')
     parser.add_argument('--batch_size', type=int, default=50,
                         help='Batch size')

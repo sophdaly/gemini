@@ -85,7 +85,7 @@ def _prepare_data(input_path, output_path, train_test_ratio):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--features_file', type=str, default='data/processed/feature_data.csv',
+    parser.add_argument('--features_file', type=str, default='data/interim/feature_data.csv',
                         help='Path to input features file')
     parser.add_argument('--output_path', type=str, default='data/processed/',
                         help='Path to output feature data directory')
