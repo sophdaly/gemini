@@ -1,5 +1,5 @@
 """
-Helper functions for loading data into a TFRecordDataset
+Helper functions for loading features into a TFRecordDataset
 """
 
 from ast import literal_eval
@@ -79,10 +79,8 @@ def _format_input_features(features_dict):
     Return features dict and label
     """
     features = {
-        'anchor': tf.cast(features_dict['anchor'], tf.float32),
-        'positive': tf.cast(features_dict['positive'], tf.float32),
-        'anchor_image': tf.cast(features_dict['anchor_image'], tf.string),
-        'positive_image': tf.cast(features_dict['positive_image'], tf.string),
+        'image': tf.cast(features_dict['image'], tf.string),
+        'embedding': tf.cast(features_dict['embedding'], tf.float32),
     }
 
     label = tf.cast(features_dict['label'], tf.string)
@@ -92,18 +90,14 @@ def _format_input_features(features_dict):
 
 def _generator_meta(embedding_dim):
     dict_types = {
-        'anchor': tf.float32,
-        'positive': tf.float32,
-        'anchor_image': tf.string,
-        'positive_image': tf.string,
-        'label': tf.string
+        'image': tf.string,
+        'label': tf.string,
+        'embedding': tf.float32
     }
     dict_shapes = {
-        'anchor': (embedding_dim),
-        'positive': (embedding_dim),
-        'anchor_image': (),
-        'positive_image': (),
-        'label': ()
+        'image': (),
+        'label': (),
+        'embedding': (embedding_dim),
     }
 
     return dict_types, dict_shapes
