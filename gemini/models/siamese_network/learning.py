@@ -9,8 +9,14 @@ def get_loss_op(anchor, positive, negative, margin):
     """
     FaceNet triplet loss
     """
+    with tf.variable_scope('triplet_loss'):
+        pos_dist = l2_distance(x=anchor, y=positive)
+        neg_dist = l2_distance(x=anchor, y=negative)
 
-    return []
+        basic_loss = tf.add(tf.subtract(pos_dist, neg_dist), margin)
+        loss = tf.reduce_mean(tf.maximum(basic_loss, 0.0), 0)
+
+    return loss
 
 
 def get_train_op(loss_op, learning_rate):
