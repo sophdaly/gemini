@@ -76,17 +76,16 @@ def _load_dataset(data_path, embedding_dim):
 def _format_input_features(features_dict):
     """
     Just make sure all features are cast to correct type
-    Return features dict and target if exists
+    Return features dict and label
     """
     features = {
         'image': tf.cast(features_dict['image'], tf.string),
-        'name': tf.cast(features_dict['label'], tf.string),
         'embedding': tf.cast(features_dict['embedding'], tf.float32),
     }
 
-    target = tf.cast(features_dict['label'], tf.string)
+    label = tf.cast(features_dict['label'], tf.string)
 
-    return features, target
+    return features, label
 
 
 def _generator_meta(embedding_dim):

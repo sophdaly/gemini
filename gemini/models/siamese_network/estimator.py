@@ -24,36 +24,13 @@ def model_fn(features: Dict[str, tf.Tensor],
     """
 
     # -------
-    # FEATURE GENERATION
-    # -------
-
-
-    # -------
     # SIAMESE NETWORK
     # -------
-    with tf.variable_scope("siamese_network") as scope:
-        with tf.name_scope("anchor_network"):
-            anchor_feats = mlp(input_features=features['anchor'],
-                             num_features=params['num_features'],
-                             layer_config=params['layer_config'],
-                             weight_decay=params['weight_decay'],
-                             training_mode=mode == tf.estimator.ModeKeys.TRAIN)
-
-        with tf.name_scope("pos_network"):
-            pos_feats = mlp(input_features=features['positive'],
-                              num_features=params['num_features'],
-                              layer_config=params['layer_config'],
-                              weight_decay=params['weight_decay'],
-                              training_mode=mode == tf.estimator.ModeKeys.TRAIN,
-                              reuse=True)
-
-        with tf.name_scope("neg_network"):
-            neg_feats = mlp(input_features=features['negative'],
-                              num_features=params['num_features'],
-                              layer_config=params['layer_config'],
-                              weight_decay=params['weight_decay'],
-                              training_mode=mode == tf.estimator.ModeKeys.TRAIN,
-                              reuse=True)
+    embeddings = mlp(input_features=features['embedding'],
+                     num_features=params['num_features'],
+                     layer_config=params['layer_config'],
+                     weight_decay=params['weight_decay'],
+                     training_mode=mode == tf.estimator.ModeKeys.TRAIN)
 
     # -------
     # PREDICT
